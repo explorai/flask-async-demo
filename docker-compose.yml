@@ -1,0 +1,59 @@
+version: "3.9"
+
+services:
+  flaskapi:
+    image: flaskapi:v1.0
+    build: './flaskapi/'
+    environment:
+      FLASK_APP: app
+      FLASK_RUN_PORT: 8080
+      FLASK_RUN_HOST: 0.0.0.0      
+    command: flask run
+    volumes:
+      - ./flaskapi:/flaskapi
+    expose:
+      - 8080
+    ports:
+      - 8080:8080
+    networks:
+      - net
+
+  redis:
+    image: redis:6
+    expose: 
+      - 6379
+    ports:
+      - 6379:6379
+    networks:
+      - net
+
+  celery_worker:
+    image: flaskapi:v1.0
+    build: './flaskapi/'
+    command: celery --app app.celery worker -B --loglevel=debug
+    volumes:
+      - ./flaskapi:/flaskapi
+    depends_on:
+      - redis
+      - flaskapi
+    networks:
+      - net
+    
+  tasks_dashboard:
+    image: flaskapi:v1.0
+    build: './flaskapi/'
+    command: celery --broker=redis://redis:6379 --app app.celery flower --port=5555 
+    volumes:
+      - ./flaskapi:/flaskapi
+    expose: 
+      - 5555
+    ports:
+    - 5555:5555
+    depends_on:
+      - redis
+      - celery_worker
+    networks:
+      - net
+
+networks:
+  net:

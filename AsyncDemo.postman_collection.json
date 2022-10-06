@@ -1,0 +1,106 @@
+{
+	"info": {
+		"_postman_id": "fe411492-c546-4e7a-a495-59e096636ff4",
+		"name": "Async Demo",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "16203016"
+	},
+	"item": [
+		{
+			"name": "get root",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get task status",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/status/f2bee3de-eaec-473c-a0ab-9e39a5da26b2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"status",
+						"f2bee3de-eaec-473c-a0ab-9e39a5da26b2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "simple async task",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/simple-async",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"simple-async"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "simple failed async task",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/simple-failed-async",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"simple-failed-async"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "custom metadata async task",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/custom-metadata-async",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"custom-metadata-async"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
